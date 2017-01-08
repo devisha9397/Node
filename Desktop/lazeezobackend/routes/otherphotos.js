@@ -1,13 +1,14 @@
 var express = require('express');
  var router = express.Router();
- var Menuitem=require('../models/menuitem_models');
+ var Otherphoto=require('../models/otherphoto_models');
 
 router.get('/:id?',function(req,res,next){
-    if(req.params.id){
 
-     Menuitem.getMenuitembyid(req.params.id,function(err,rows){
+     if(req.params.id){
+
+     Otherphoto.getOtherphotobyid(req.params.id,function(err,rows){
  
-if(err) 
+if(err)
   { 
   res.json(err);
   }
@@ -17,12 +18,11 @@ if(err)
   }
   });
  }
- else
- {
+ else 
+{
+Otherphoto.getAllOtherphoto(function(err,rows){
 
-Menuitem.getAllMenuitem(function(err,rows){
-
-    if (err)
+    if (err) 
     {
         res.json(err);
     }
@@ -31,13 +31,13 @@ Menuitem.getAllMenuitem(function(err,rows){
         res.json(rows);
     }
 });
- }
+}
 }); 
 
 
 router.post('/',function(req,res,next){
 
-Menuitem.addMenuitem(req.body,function(err,count){
+Otherphoto.addOtherphoto(req.body,function(err,count){
 
 if(err){
 
@@ -54,7 +54,7 @@ else
 
 router.delete('/:id',function(req,res,next){
 
-        Menuitem.deleteMenuitem(req.params.id,function(err,count){
+        Otherphoto.deleteOtherphoto(req.params.id,function(err,count){
 
                 if(err){
                     res.json(err);
@@ -68,7 +68,7 @@ router.delete('/:id',function(req,res,next){
 
 router.put('/:id',function(req,res,next){
  
-Menuitem.updateMenuitem(req.params.id,req.body,function(err,rows){
+Otherphoto.updateOtherphoto(req.params.id,req.body,function(err,rows){
  
 if(err)
   {

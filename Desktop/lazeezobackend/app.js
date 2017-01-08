@@ -15,6 +15,15 @@ var Restaurants=require('./routes/restaurants');
 var Restowners=require('./routes/restowners');
 var Reviews=require('./routes/reviews');
 var Users=require('./routes/users');
+var Favs=require('./routes/favs');
+var Discounts=require('./routes/discounts');
+var Reviewlikes=require('./routes/reviewlikes');
+var Getbookjoins=require('./routes/getbookjoins');
+var Getmenuitemjoins=require('./routes/getmenuitemjoins');
+var Getorderjoins=require('./routes/getorderjoins');
+var Getrestaurantjoins=require('./routes/getrestaurantjoins');
+var Getfavjoins=require('./routes/getfavjoins');
+var Getdiscountjoins=require('./routes/getdiscountjoins');
 var app = express();
 
 // view engine setup
@@ -40,6 +49,15 @@ app.use('/restaurants',Restaurants);
 app.use('/restowners',Restowners);
 app.use('/reviews',Reviews);
 app.use('/users',Users);
+app.use('/favs',Favs);
+app.use('/discounts',Discounts);
+app.use('/reviewlikes',Reviewlikes);
+app.use('/getbookjoins',Getbookjoins); 
+app.use('/getmenuitemjoins',Getmenuitemjoins);
+app.use('/getorderjoins',Getorderjoins);
+app.use('/getrestaurantjoins',Getrestaurantjoins);
+app.use('/getfavjoins',Getfavjoins);
+app.use('/getdiscountjoins',Getdiscountjoins);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

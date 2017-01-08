@@ -1,26 +1,11 @@
 var express = require('express');
  var router = express.Router();
- var Menuitem=require('../models/menuitem_models');
+ var Booktable=require('../models/reviewlike_models');
 
-router.get('/:id?',function(req,res,next){
-    if(req.params.id){
+router.get('/',function(req,res,next){
+    
 
-     Menuitem.getMenuitembyid(req.params.id,function(err,rows){
- 
-if(err) 
-  { 
-  res.json(err);
-  }
-  else 
-  {
-  res.json(rows);
-  }
-  });
- }
- else
- {
-
-Menuitem.getAllMenuitem(function(err,rows){
+Reviewlike.getAllReviewlike(function(err,rows){
 
     if (err)
     {
@@ -31,13 +16,12 @@ Menuitem.getAllMenuitem(function(err,rows){
         res.json(rows);
     }
 });
- }
 }); 
 
 
 router.post('/',function(req,res,next){
 
-Menuitem.addMenuitem(req.body,function(err,count){
+Reviewlike.addReviewlike(req.body,function(err,count){
 
 if(err){
 
@@ -54,7 +38,7 @@ else
 
 router.delete('/:id',function(req,res,next){
 
-        Menuitem.deleteMenuitem(req.params.id,function(err,count){
+        Reviewlike.deleteReviewlike(req.params.id,function(err,count){
 
                 if(err){
                     res.json(err);
@@ -68,7 +52,7 @@ router.delete('/:id',function(req,res,next){
 
 router.put('/:id',function(req,res,next){
  
-Menuitem.updateMenuitem(req.params.id,req.body,function(err,rows){
+Reviewlike.updateReviewlike(req.params.id,req.body,function(err,rows){
  
 if(err)
   {

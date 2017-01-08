@@ -7,17 +7,22 @@ getAllCategory:function(callback){
 return db.query("Select * from category_tbl",callback);
  
 },
+getCategorybyid:function(id,callback)//aa bdhi model ma nakhvu
+{
+return db.query("Select * from category_tbl where cat_id=?",[id],callback);
+},
 addCategory:function(Category,callback){
+console.log(Category);
+return db.query("insert into category_tbl(cusines) values(?)",[Category.cusines],callback);
 
-return db.query("insert into category_tbl(fk_rest_id,cusines,cost,hours,known_for,spotlight) values(?,?,?,?,?,?)",[Category.fk_rest_id,Category.cusines,Category.cost,Category.hours,Category.known_for,Category.spotlight])
 },
 deleteCategory:function(id,callback){
 
     return db.query("delete from category_tbl where cat_id=?",[id]),callback;
 
-},
+}, 
 updateCategory:function(id,Category,callback){
-  return db.query("update category_tbl set fk_rest_id=?,cusines=?,cost=?,hours=?,known_for=?,spotlight=? where cat_id=?",[Category.fk_rest_id,Category.cusines,Category.cost,Category.hours,Category.known_for,Category.spotlight,callback]);
+  return db.query("update category_tbl set cusines=? where cat_id=?",[Category.cusines,id],callback);
  }
  
  

@@ -2,7 +2,23 @@ var express = require('express');
  var router = express.Router();
  var Restaurant=require('../models/restaurant_models');
 
-router.get('/',function(req,res,next){
+router.get('/:id?',function(req,res,next){
+if(req.params.id){
+
+     Restaurant.getRestaurantbyid(req.params.id,function(err,rows){
+ 
+if(err) 
+  { 
+  res.json(err);
+  }
+  else 
+  {
+  res.json(rows);
+  }
+  });
+ }
+ else
+ {
 
 Restaurant.getAllRestaurant(function(err,rows){
 
@@ -15,6 +31,7 @@ Restaurant.getAllRestaurant(function(err,rows){
         res.json(rows);
     }
 });
+ }
 }); 
 
 

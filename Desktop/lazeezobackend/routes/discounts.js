@@ -1,11 +1,12 @@
 var express = require('express');
  var router = express.Router();
- var Menuitem=require('../models/menuitem_models');
+ var Discount=require('../models/discount_model');
 
-router.get('/:id?',function(req,res,next){
-    if(req.params.id){
+router.get('/',function(req,res,next){
 
-     Menuitem.getMenuitembyid(req.params.id,function(err,rows){
+if(req.params.id){
+
+     Discount.getDiscountbyid(req.params.id,function(err,rows){
  
 if(err) 
   { 
@@ -19,8 +20,7 @@ if(err)
  }
  else
  {
-
-Menuitem.getAllMenuitem(function(err,rows){
+Discount.getAllDiscount(function(err,rows){
 
     if (err)
     {
@@ -31,13 +31,13 @@ Menuitem.getAllMenuitem(function(err,rows){
         res.json(rows);
     }
 });
- }
+ } 
 }); 
 
 
 router.post('/',function(req,res,next){
 
-Menuitem.addMenuitem(req.body,function(err,count){
+Discount.addDiscount(req.body,function(err,count){
 
 if(err){
 
@@ -54,7 +54,7 @@ else
 
 router.delete('/:id',function(req,res,next){
 
-        Menuitem.deleteMenuitem(req.params.id,function(err,count){
+        Discount.deleteDiscount(req.params.id,function(err,count){
 
                 if(err){
                     res.json(err);
@@ -68,7 +68,7 @@ router.delete('/:id',function(req,res,next){
 
 router.put('/:id',function(req,res,next){
  
-Menuitem.updateMenuitem(req.params.id,req.body,function(err,rows){
+Discount.updateDiscount(req.params.id,req.body,function(err,rows){
  
 if(err)
   {

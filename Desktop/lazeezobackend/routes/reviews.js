@@ -2,8 +2,23 @@ var express = require('express');
  var router = express.Router();
  var Review=require('../models/review_models');
 
-router.get('/',function(req,res,next){
+router.get('/:id?',function(req,res,next){
+    if(req.params.id){
 
+     Review.getReviewbyid(req.params.id,function(err,rows){
+ 
+if(err) 
+  { 
+  res.json(err);
+  }
+  else 
+  {
+  res.json(rows);
+  }
+  });
+ }
+else
+{
 Review.getAllReview(function(err,rows){
 
     if (err)
@@ -15,6 +30,7 @@ Review.getAllReview(function(err,rows){
         res.json(rows);
     }
 });
+}
 }); 
 
 

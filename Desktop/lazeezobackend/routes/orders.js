@@ -4,6 +4,22 @@ var express = require('express');
 
 router.get('/',function(req,res,next){
 
+if(req.params.id){
+
+     Order.getOrderbyid(req.params.id,function(err,rows){
+ 
+if(err) 
+  { 
+  res.json(err);
+  }
+  else 
+  {
+  res.json(rows);
+  }
+  });
+ }
+ else
+ {
 Order.getAllOrder(function(err,rows){
 
     if (err)
@@ -15,6 +31,7 @@ Order.getAllOrder(function(err,rows){
         res.json(rows);
     }
 });
+ } 
 }); 
 
 
